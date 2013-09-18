@@ -1,8 +1,7 @@
 <?php
 
 $version = "0.0.1";
-
-$url = $_GET['url'];
+$url = @$_GET['url'];
 $r = preg_match('#https?://(www\.)?([^/]+)/.*#', $url, $m);
 $service = $m[2];
 
@@ -16,7 +15,7 @@ if (!$r) {
 
 if (!file_exists("engines/{$service}.php")) {
   $http = "400 Bad Request";
-  $error = "Unrecognized service";
+  $error = "Unrecognized service: $service";
   header("HTTP/1.0 $http");
   require_once('error.tpl.php');
   exit;
