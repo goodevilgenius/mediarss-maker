@@ -17,7 +17,7 @@
       <title><?=@$item['title']?></title>
       <link><?=$item['link']?></link>
       <guid isPermaLink="<?=empty($item['guid'])?'true':'false'?>"><?=empty($item['guid'])?$item['link']:$item['guid']?></guid>
-      <pubDate><?date('r',@$item['pubDate']?:time())?></pubDate>
+      <pubDate><?=date('r',@$item['pubDate']?:time())?></pubDate>
       <media:title type="plain"><?=@$item['title']?></media:title>
       <media:keywords><?=@implode(',',$item['keywords'])?></media:keywords>
       <media:rating><?=$item['adult']?"":"non"?>adult</media:rating>
