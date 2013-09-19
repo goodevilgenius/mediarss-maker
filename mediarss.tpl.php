@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title><?=@$tpl['title']?:"MediaRSS Maker"?></title>
-    <link><?=@$tpl['link']?:$url?></link>
+    <link><?=@htmlspecialchars($tpl['link']?:$url)?></link>
     <description><?=@$tpl['description']?:"An image feed"?></description>
     <language><?=@$tpl['lang']?:"en-us"?></language>
     <copyright></copyright>
