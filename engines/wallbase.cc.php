@@ -24,6 +24,7 @@ if (!empty($d)) {
     }
 
     $item['title'] = implode(', ', $item['tags']);
+    if (empty($item['title'])) $item['title'] = "wallbase.cc wallpaper";
     $item['link'] = "http://wallbase.cc/wallpaper/" . $item['wid'];
     $item['thumb'] = array('url' => $i->find('a img')[0]->{"data-original"});
     $item['content'] = array('url' => str_replace('thumbs','wallpapers', $item['thumb']['url']));
