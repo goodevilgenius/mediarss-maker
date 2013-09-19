@@ -28,7 +28,7 @@ if (!empty($d)) {
     $item['link'] = "http://wallbase.cc/wallpaper/" . $item['wid'];
     $item['reso'] = explode('x',$i->find('span.reso')[0]->innertext());
     $item['thumb'] = array('url' => $i->find('a img')[0]->{"data-original"},'width'=>250,'height'=>188);
-    $item['content'] = array('url' => str_replace('thumbs','wallpapers', $item['thumb']['url']),'width'=>$item['reso'][0],'height'=>$item['reso'][1]);
+    $item['content'] = array('url' => str_replace('thumb','wallpaper', $item['thumb']['url']),'width'=>$item['reso'][0],'height'=>$item['reso'][1]);
     
     $item['description'] = "<p>";
     foreach($item['tags'] as $key => $tag) {
