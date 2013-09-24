@@ -17,21 +17,20 @@ if (!empty($rss)) {
   $tpl['items'] = array();
 
   foreach($rss->channel->item as $i) {
-    if (preg_match('/([0-9]+) ?x ?([0-9]+)/', $i->title, $m)) {
-      if (preg_match('@submitted by <a href="http://www.reddit.com/user/([A-Za-z0-9_]+)"> ?\1 ?</a>( to <a href="http://www.reddit.com/r/[^"]+">[^<]+</a>)?( <br/> )?<a href="([^"]+)">[^<]+</a>@',$i->description, $m1)) {
-	$item = array();
+    if (stripos($i->title, "request") !== false) continue;
+    if (!preg_match('/([0-9]+) ?x ?([0-9]+)/', $i->title, $m)) continue;
+    if (!preg_match('@submitted by <a href="http://www.reddit.com/user/([A-Za-z0-9_]+)"> ?\1 ?</a>( to <a href="http://www.reddit.com/r/[^"]+">[^<]+</a>)?( <br/> )?<a href="([^"]+)">[^<]+</a>@',$i->description, $m1)) continue;
 
-	$item->author = $m1[1];
-	$item['title'] = $i->title;
-	$item['link'] = $i->link;
-	$item['pubDate'] = strtotime($i->pubDate);
-	$item['description'] = $i->description;
-	$item['adult'] = (strpos($i->title, "NSFW") !== false);
+    $item = array();
+    $item['author'] = $m1[1];
+    $item['title'] = $i->title;
+    $item['link'] = $i->link;
+    $item['pubDate'] = strtotime($i->pubDate);
+    $item['description'] = $i->description;
+    $item['adult'] = (strpos($i->title, "NSFW") !== false);
       
-	$item['content'] = array('url'=>$m1[4],'width'=>$m[1],'height'=>$m[2]);
+    $item['content'] = array('url'=>$m1[4],'width'=>$m[1],'height'=>$m[2]);
 
-	$tpl['items'][] = $item;
-      }
-    }
+    $tpl['items'][] = $item;
   }
 }
