@@ -3,6 +3,13 @@
     <title><?=@$tpl['title']?:"MediaRSS Maker"?></title>
     <link><?=@htmlspecialchars($tpl['link']?:$url)?></link>
     <description><?=@$tpl['description']?:"An image feed"?></description>
+    <?php if (!empty($tpl['image']) && !empty($tpl['image']['url'])) : ?>
+      <image>
+	<url><?=$tpl['image']['url']?></url>
+	<title><?=@$tpl['image']['title']?:$tpl['title']?></title>
+	<link><?=@$tpl['image']['link']?:$tpl['link']?></link>
+      </image>
+    <?php endif; ?>
     <language><?=@$tpl['lang']?:"en-us"?></language>
     <copyright></copyright>
     <pubDate><?=date('r',@$tpl['pubDate']?:time())?></pubDate>
