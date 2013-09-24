@@ -6,7 +6,7 @@ $rss = new simplexmlelement($feed,0,true);
 
 if (!empty($rss)) {
 
-  $tpl['title'] = $rss->channel->title;
+  $tpl['title'] = htmlspecialchars($rss->channel->title);
   $tpl['link'] = $rss->channel->link;
   $tpl['description'] = $rss->channel->description;
   $tpl['image'] = array();
@@ -23,7 +23,7 @@ if (!empty($rss)) {
 
     $item = array();
     $item['author'] = $m1[1];
-    $item['title'] = $i->title;
+    $item['title'] = htmlspecialchars($i->title);
     $item['link'] = $i->link;
     $item['pubDate'] = strtotime($i->pubDate);
     $item['description'] = $i->description;
